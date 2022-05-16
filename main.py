@@ -67,5 +67,4 @@ if st.button("Predict Price"):
         ips = 1
 
     feature = np.array([company, type, ram, weight, touch, ips, ppi, cpu, hdd, ssd, gpu, os]).reshape(1,12)
-
-    st.title("₹{:.2f}".format(np.exp(pipe.predict(feature)[0])))
+    st.title("The Price for laptop should be: ₹{:.2f}".format(np.exp(pipe.predict(feature)[0])))
