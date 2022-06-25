@@ -74,24 +74,27 @@ os = st.selectbox("Operating System",df["OS"].unique())
 
 
 if st.button("Predict Price"):
-    ResX = int(res.split('x')[0])
-    ResY = int(res.split('x')[1])
-    ppi = ((ResX ** 2) + (ResY ** 2)) ** 0.5 / size
-
-    if touch == "No":
-        touch = 0
+    if size == 0:
+        st.header("Please Enter Valid Screen Size")
     else:
-        touch = 1
+        ResX = int(res.split('x')[0])
+        ResY = int(res.split('x')[1])
+        ppi = ((ResX ** 2) + (ResY ** 2)) ** 0.5 / size
 
-    if ips == "No":
-        ips = 0
-    else:
-        ips = 1
+        if touch == "No":
+            touch = 0
+        else:
+            touch = 1
 
-    feature = np.array([company, type, ram, weight, touch, ips, ppi, cpu, hdd, ssd, gpu, os]).reshape(1,12)
+        if ips == "No":
+            ips = 0
+        else:
+            ips = 1
 
-    with st.spinner(text="In progress..."):
-        time.sleep(2)
-        pred = np.exp(pipe.predict(feature)[0])
+        feature = np.array([company, type, ram, weight, touch, ips, ppi, cpu, hdd, ssd, gpu, os]).reshape(1,12)
 
-    st.header("The Price for laptop should be: ₹{:.2f}".format(pred))
+        with st.spinner(text="In progress..."):
+            time.sleep(2)
+            pred = np.exp(pipe.predict(feature)[0])
+
+        st.header("The Price for laptop should be: ₹{:.2f}".format(pred))
