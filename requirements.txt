@@ -1,2 +1,6 @@
-streamlit
-sklearn
+numpy==1.22.4
+pandas==1.5.1
+seaborn==0.11.2
+matplotlib==3.5.1
+pickleshare==0.7.5
+scikit-learn==1.1.2
